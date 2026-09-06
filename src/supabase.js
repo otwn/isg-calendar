@@ -36,6 +36,7 @@ CREATE TABLE members (
   email TEXT,
   phone TEXT,
   color TEXT DEFAULT '#6366f1',
+  has_key BOOLEAN NOT NULL DEFAULT false,  -- has a key to the building
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   deleted_at TIMESTAMPTZ DEFAULT NULL  -- soft delete timestamp
 );
@@ -44,7 +45,7 @@ CREATE INDEX idx_members_deleted_at ON members(deleted_at);
 
 -- View: only active (non-deleted) members
 CREATE OR REPLACE VIEW active_members AS
-  SELECT id, name, email, phone, color, created_at
+  SELECT id, name, email, phone, color, has_key, created_at
   FROM members
   WHERE deleted_at IS NULL;
 
@@ -80,11 +81,11 @@ CREATE POLICY "Allow all" ON shifts FOR ALL USING (true) WITH CHECK (true);
 CREATE POLICY "Allow all" ON history FOR ALL USING (true) WITH CHECK (true);
 
 -- Insert some sample members
-INSERT INTO members (name, email, phone, color) VALUES
-  ('Alice Johnson', 'alice@example.com', '555-0101', '#6366f1'),
-  ('Bob Smith', 'bob@example.com', '555-0102', '#ec4899'),
-  ('Carol Davis', 'carol@example.com', '555-0103', '#14b8a6'),
-  ('David Lee', 'david@example.com', '555-0104', '#f59e0b'),
-  ('Emma Wilson', 'emma@example.com', '555-0105', '#8b5cf6');
+INSERT INTO members (name, email, phone, color, has_key) VALUES
+  ('Alice Johnson', 'alice@example.com', '555-0101', '#6366f1', true),
+  ('Bob Smith', 'bob@example.com', '555-0102', '#ec4899', false),
+  ('Carol Davis', 'carol@example.com', '555-0103', '#14b8a6', false),
+  ('David Lee', 'david@example.com', '555-0104', '#f59e0b', false),
+  ('Emma Wilson', 'emma@example.com', '555-0105', '#8b5cf6', false);
 
 */

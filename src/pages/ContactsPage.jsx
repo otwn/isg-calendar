@@ -14,7 +14,7 @@ export default function ContactsPage() {
   const [viewMode, setViewMode] = useState('active')
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [editingMember, setEditingMember] = useState(null)
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', color: '#6366f1' })
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', color: '#6366f1', has_key: false })
 
   // Confirmation modal state
   const [confirmMember, setConfirmMember] = useState(null)
@@ -46,10 +46,10 @@ export default function ContactsPage() {
   const handleOpenModal = (member = null) => {
     if (member) {
       setEditingMember(member)
-      setFormData({ name: member.name, email: member.email || '', phone: member.phone || '', color: member.color })
+      setFormData({ name: member.name, email: member.email || '', phone: member.phone || '', color: member.color, has_key: member.has_key || false })
     } else {
       setEditingMember(null)
-      setFormData({ name: '', email: '', phone: '', color: '#6366f1' })
+      setFormData({ name: '', email: '', phone: '', color: '#6366f1', has_key: false })
     }
     setIsModalOpen(true)
   }
@@ -209,6 +209,11 @@ export default function ContactsPage() {
               </div>
 
               <div className="space-y-2 text-sm">
+                <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${
+                  member.has_key ? 'bg-green-100 text-green-700' : 'bg-slate-100 text-slate-500'
+                }`}>
+                  {member.has_key ? 'Has Key' : 'No Key'}
+                </span>
                 {member.email && (
                   <div className="flex items-center gap-2 text-slate-600">
                     <Icons.Email />
@@ -256,6 +261,11 @@ export default function ContactsPage() {
               </div>
 
               <div className="space-y-2 text-sm">
+                <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${
+                  member.has_key ? 'bg-green-50 text-green-600' : 'bg-slate-100 text-slate-400'
+                }`}>
+                  {member.has_key ? 'Has Key' : 'No Key'}
+                </span>
                 {member.email && (
                   <div className="flex items-center gap-2 text-slate-400">
                     <Icons.Email />
@@ -326,6 +336,16 @@ export default function ContactsPage() {
               className="w-full px-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all"
             />
           </div>
+
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input
+              type="checkbox"
+              checked={formData.has_key}
+              onChange={(e) => setFormData({ ...formData, has_key: e.target.checked })}
+              className="w-4 h-4 rounded border-slate-300 text-indigo-500 focus:ring-indigo-500"
+            />
+            <span className="text-sm font-medium text-slate-700">Has Key</span>
+          </label>
 
           <div>
             <label className="block text-sm font-medium text-slate-700 mb-2">Color</label>
