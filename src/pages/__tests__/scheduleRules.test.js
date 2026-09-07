@@ -15,6 +15,21 @@ describe('getDayCellClasses', () => {
     expect(getDayCellClasses(new Date(2026, 4, 7))).toContain('no-shift-day') // Thu
     expect(getDayCellClasses(new Date(2026, 4, 9))).toContain('no-shift-day') // Sat
   })
+
+  it('greys out Jan 1 even when it falls on a Mon/Wed/Fri', () => {
+    expect(getDayCellClasses(new Date(2027, 0, 1))).toEqual(['no-shift-day']) // Fri
+  })
+
+  it('greys out Dec 24-31 even when they fall on a Mon/Wed/Fri', () => {
+    expect(getDayCellClasses(new Date(2026, 11, 25))).toEqual(['no-shift-day']) // Fri
+    expect(getDayCellClasses(new Date(2026, 11, 28))).toEqual(['no-shift-day']) // Mon
+    expect(getDayCellClasses(new Date(2026, 11, 30))).toEqual(['no-shift-day']) // Wed
+  })
+
+  it('leaves Dec 23 (before the year-end block) untouched if it is a shift day', () => {
+    // Dec 23, 2026 is a Wednesday
+    expect(getDayCellClasses(new Date(2026, 11, 23))).toEqual([])
+  })
 })
 
 describe('getShiftTimeReminder', () => {

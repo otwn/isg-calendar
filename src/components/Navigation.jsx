@@ -4,7 +4,7 @@ import { CONFIG, getGoogleCalendarUrl } from '../config'
 
 export default function Navigation() {
   const navItems = [
-    { to: '/', icon: Icons.Calendar, label: 'Schedule' },
+    { to: '/', icon: Icons.Sun, label: 'Schedule' },
     { to: '/contacts', icon: Icons.Users, label: 'Contacts' },
     { to: '/history', icon: Icons.History, label: 'History' },
   ]
@@ -18,8 +18,8 @@ export default function Navigation() {
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-indigo-500 rounded-lg flex items-center justify-center text-white">
-              <Icons.Calendar />
+            <div className="w-8 h-8 bg-amber-400 rounded-lg flex items-center justify-center text-white">
+              <Icons.Sun />
             </div>
             <span className="font-semibold text-slate-800 text-lg">{CONFIG.appName}</span>
           </div>

@@ -1,10 +1,8 @@
 export const Icons = {
-  Calendar: () => (
+  Sun: () => (
     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <rect width="18" height="18" x="3" y="4" rx="2" ry="2" strokeWidth="2"/>
-      <line x1="16" x2="16" y1="2" y2="6" strokeWidth="2"/>
-      <line x1="8" x2="8" y1="2" y2="6" strokeWidth="2"/>
-      <line x1="3" x2="21" y1="10" y2="10" strokeWidth="2"/>
+      <circle cx="12" cy="12" r="4" strokeWidth="2"/>
+      <path strokeWidth="2" strokeLinecap="round" d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
     </svg>
   ),
   Users: () => (
