@@ -87,7 +87,8 @@ export default function SchedulePage() {
 
       setSelectedMember('')
       setIsModalOpen(false)
-      setReminder(getShiftTimeReminder(parseISO(selectedDate)))
+      // No time reminder for the closed-day placeholder member
+      if (member?.name?.trim().toUpperCase() !== 'NOT OPEN') setReminder(getShiftTimeReminder(parseISO(selectedDate)))
       fetchData()
     } catch (error) {
       console.error('Error assigning shift:', error)
