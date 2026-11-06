@@ -12,7 +12,7 @@ export const CONFIG = {
 
     // Year-end holiday block: from this day of December through Dec 31.
     // New Year's Day (Jan 1) is always closed regardless of this setting.
-    yearEndBlockStartDay: 24,
+    yearEndBlockStartDay: 15,
 
     // Shift start/end times shown in the post-assign reminder, keyed by
     // weekday (0=Sun … 6=Sat). Days without an entry have no fixed time.

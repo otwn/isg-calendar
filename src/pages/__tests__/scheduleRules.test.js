@@ -20,15 +20,16 @@ describe('getDayCellClasses', () => {
     expect(getDayCellClasses(new Date(2027, 0, 1))).toEqual(['no-shift-day']) // Fri
   })
 
-  it('greys out Dec 24-31 even when they fall on a Mon/Wed/Fri', () => {
+  it('greys out Dec 15-31 even when they fall on a Mon/Wed/Fri', () => {
+    expect(getDayCellClasses(new Date(2026, 11, 16))).toEqual(['no-shift-day']) // Wed
     expect(getDayCellClasses(new Date(2026, 11, 25))).toEqual(['no-shift-day']) // Fri
     expect(getDayCellClasses(new Date(2026, 11, 28))).toEqual(['no-shift-day']) // Mon
     expect(getDayCellClasses(new Date(2026, 11, 30))).toEqual(['no-shift-day']) // Wed
   })
 
-  it('leaves Dec 23 (before the year-end block) untouched if it is a shift day', () => {
-    // Dec 23, 2026 is a Wednesday
-    expect(getDayCellClasses(new Date(2026, 11, 23))).toEqual([])
+  it('leaves Dec 14 (before the year-end block) untouched if it is a shift day', () => {
+    // Dec 14, 2026 is a Monday
+    expect(getDayCellClasses(new Date(2026, 11, 14))).toEqual([])
   })
 })
 
